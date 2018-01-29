@@ -5,9 +5,6 @@ import javax.swing.JOptionPane;
 /**
  * @author - Duy Pham
  * @version - 1.01 - 02/20/2014
- * @assignment.number - A19006
- * @prgm.usage A19006
- * @see <a href='http://jcouture.net/cisc190/A19006.php'>Program Specification</a>
  * @see <br><a href='http://docs.oracle.com/javase/7/docs/api/javax/swing/JOptionPane.html'>Javadoc Documentation</a>
  * @email pnad0911@gmail.com
  */
