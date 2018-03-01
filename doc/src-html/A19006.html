@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>import java.io.PrintWriter;<a name="line.1"></a>
+<span class="sourceLineNo">002</span>import java.util.ArrayList;<a name="line.2"></a>
+<span class="sourceLineNo">003</span>import javax.swing.JOptionPane;<a name="line.3"></a>
+<span class="sourceLineNo">004</span><a name="line.4"></a>
+<span class="sourceLineNo">005</span>/**<a name="line.5"></a>
+<span class="sourceLineNo">006</span> * @author - Duy Pham<a name="line.6"></a>
+<span class="sourceLineNo">007</span> * @version - 1.01 - 02/20/2014<a name="line.7"></a>
+<span class="sourceLineNo">008</span> * @assignment.number - A19006<a name="line.8"></a>
+<span class="sourceLineNo">009</span> * @prgm.usage A19006<a name="line.9"></a>
+<span class="sourceLineNo">010</span> * @see &lt;a href='http://jcouture.net/cisc190/A19006.php'&gt;Program Specification&lt;/a&gt;<a name="line.10"></a>
+<span class="sourceLineNo">011</span> * @see &lt;br&gt;&lt;a href='http://docs.oracle.com/javase/7/docs/api/javax/swing/JOptionPane.html'&gt;Javadoc Documentation&lt;/a&gt;<a name="line.11"></a>
+<span class="sourceLineNo">012</span> * @email pnad0911@gmail.com<a name="line.12"></a>
+<span class="sourceLineNo">013</span> */<a name="line.13"></a>
+<span class="sourceLineNo">014</span>public class A19006<a name="line.14"></a>
+<span class="sourceLineNo">015</span>{<a name="line.15"></a>
+<span class="sourceLineNo">016</span>    public static void main(String[] args) throws Exception<a name="line.16"></a>
+<span class="sourceLineNo">017</span>    {<a name="line.17"></a>
+<span class="sourceLineNo">018</span>        System.out.println("Hello World");<a name="line.18"></a>
+<span class="sourceLineNo">019</span>        //Declare a string array called aryAltitudes that contains the nine altitudes as two character strings<a name="line.19"></a>
+<span class="sourceLineNo">020</span>        String[] aryAltitudes= {"03","06","09","12","18","24","30","34","39"};<a name="line.20"></a>
+<span class="sourceLineNo">021</span>        //Open an output file<a name="line.21"></a>
+<span class="sourceLineNo">022</span>        PrintWriter FBOUT = new PrintWriter("data/FBOUT.txt");<a name="line.22"></a>
+<span class="sourceLineNo">023</span>        String strStaID;<a name="line.23"></a>
+<span class="sourceLineNo">024</span>        String strLine;<a name="line.24"></a>
+<span class="sourceLineNo">025</span>        //Instantiate a Stations object called db<a name="line.25"></a>
+<span class="sourceLineNo">026</span>        Stations db= new Stations("data/FBIN.txt");<a name="line.26"></a>
+<span class="sourceLineNo">027</span>        Boolean strBoo=false;<a name="line.27"></a>
+<span class="sourceLineNo">028</span>        while(!strBoo)<a name="line.28"></a>
+<span class="sourceLineNo">029</span>        {<a name="line.29"></a>
+<span class="sourceLineNo">030</span>            //Prompt for Station ID<a name="line.30"></a>
+<span class="sourceLineNo">031</span>                strStaID= JOptionPane.showInputDialog("Enter the station Id");<a name="line.31"></a>
+<span class="sourceLineNo">032</span>                strStaID=strStaID.toUpperCase();<a name="line.32"></a>
+<span class="sourceLineNo">033</span>            //if exist<a name="line.33"></a>
+<span class="sourceLineNo">034</span>            if(db.exists(strStaID)==true){<a name="line.34"></a>
+<span class="sourceLineNo">035</span>                strLine=db.getStaWea(strStaID);<a name="line.35"></a>
+<span class="sourceLineNo">036</span>                NWSFB05 fb= new NWSFB05(strStaID);<a name="line.36"></a>
+<span class="sourceLineNo">037</span>                FBOUT.println("A19006 - by DUY PHAM");<a name="line.37"></a>
+<span class="sourceLineNo">038</span>                FBOUT.println("The number of stations in the file "+db.length());<a name="line.38"></a>
+<span class="sourceLineNo">039</span>                FBOUT.println("Station Weather for "+strLine);<a name="line.39"></a>
+<span class="sourceLineNo">040</span>                FBOUT.println("At 03,000 feet:    Dir= "+fb.getWindDirection(strLine,"3000")+"\t"+"Speed= "+fb.getWindSpeed(strLine,"3000")+"\t"+"Temp= "+fb.getWindTemp(strLine,"3000"));<a name="line.40"></a>
+<span class="sourceLineNo">041</span>                FBOUT.println("At 06,000 feet:    Dir= "+fb.getWindDirection(strLine,"6000")+"\t"+"Speed= "+fb.getWindSpeed(strLine,"6000")+"\t"+"Temp= "+fb.getWindTemp(strLine,"6000"));<a name="line.41"></a>
+<span class="sourceLineNo">042</span>                FBOUT.println("At 09,000 feet:    Dir= "+fb.getWindDirection(strLine,"9000")+"\t"+"Speed= "+fb.getWindSpeed(strLine,"9000")+"\t"+"Temp= "+fb.getWindTemp(strLine,"9000"));<a name="line.42"></a>
+<span class="sourceLineNo">043</span>                FBOUT.println("At 12,000 feet:    Dir= "+fb.getWindDirection(strLine,"12000")+"\t"+"Speed= "+fb.getWindSpeed(strLine,"12000")+"\t"+"Temp= "+fb.getWindTemp(strLine,"12000"));<a name="line.43"></a>
+<span class="sourceLineNo">044</span>                FBOUT.println("At 18,000 feet:    Dir= "+fb.getWindDirection(strLine,"18000")+"\t"+"Speed= "+fb.getWindSpeed(strLine,"18000")+"\t"+"Temp= "+fb.getWindTemp(strLine,"18000"));<a name="line.44"></a>
+<span class="sourceLineNo">045</span>                FBOUT.println("At 24,000 feet:    Dir= "+fb.getWindDirection(strLine,"24000")+"\t"+"Speed= "+fb.getWindSpeed(strLine,"24000")+"\t"+"Temp= "+fb.getWindTemp(strLine,"24000"));<a name="line.45"></a>
+<span class="sourceLineNo">046</span>                FBOUT.println("At 30,000 feet:    Dir= "+fb.getWindDirection(strLine,"30000")+"\t  Speed= "+fb.getWindSpeed(strLine,"30000")+"\t"+"Temp= "+fb.getWindTemp(strLine,"30000"));<a name="line.46"></a>
+<span class="sourceLineNo">047</span>                FBOUT.println("At 34,000 feet:    Dir= "+fb.getWindDirection(strLine,"34000")+"\t  Speed= "+fb.getWindSpeed(strLine,"34000")+"\t"+"Temp= "+fb.getWindTemp(strLine,"34000"));<a name="line.47"></a>
+<span class="sourceLineNo">048</span>                FBOUT.println("At 39,000 feet:    Dir= "+fb.getWindDirection(strLine,"39000")+"\t  Speed= "+fb.getWindSpeed(strLine,"39000")+"\t"+"Temp= "+fb.getWindTemp(strLine,"39000"));<a name="line.48"></a>
+<span class="sourceLineNo">049</span>                strBoo=true;<a name="line.49"></a>
+<span class="sourceLineNo">050</span>                FBOUT.close();<a name="line.50"></a>
+<span class="sourceLineNo">051</span>            }<a name="line.51"></a>
+<span class="sourceLineNo">052</span>        }<a name="line.52"></a>
+<span class="sourceLineNo">053</span>    }<a name="line.53"></a>
+<span class="sourceLineNo">054</span>}<a name="line.54"></a>
+<span class="sourceLineNo">055</span><a name="line.55"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>
